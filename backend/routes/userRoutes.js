@@ -4,7 +4,7 @@ const {registerUser, loginUser, getMe} = require('../controllers/usercontroller'
 
 const {protect} = require('../middleware/authMiddleware')
 
-// imported functions from usercontroller.js
+// matching route with the method to handle it from the usercontroller
 router.post('/', registerUser)
 router.post('/login', loginUser)
 router.get('/me', protect, getMe)

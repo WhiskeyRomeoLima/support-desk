@@ -12,7 +12,6 @@ const protect = asyncHandler(async (req, res, next) => {
     try {
       // Get token from header
       token = req.headers.authorization.split(' ')[1] //split into an array.  the word Bearer is at position 1 in the array.
-      
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
       // Get user from token
@@ -31,6 +30,5 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new Error('Not authorized')
   }
 })
-
 
 module.exports = { protect }

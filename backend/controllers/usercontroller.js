@@ -1,19 +1,17 @@
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler') //middleware for handling exceptions of express routes and passing them to your express error handlers
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-//
-
 const User = require('../models/userModel')
 
 // @desc    Register a new user
 // @route   /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, password } = req.body //desctructure
 
   // Validation
   if (!name || !email || !password) {
-    res.status(400)
+    res.status(400) //client error
     throw new Error('Please include all fields')
   }
 

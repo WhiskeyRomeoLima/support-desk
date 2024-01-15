@@ -14,11 +14,13 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// Routes
+//* mount routes - the routes are defined, controllers created to handle them, and made avaible here to the entire application
+// instead of this from Jonas: const userRouter = require('./routes/userRoutes')
+// then app.use('/api/users', userRouter), brads saves a step
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/tickets', require('./routes/ticketRoutes'))
 
-// Serve Frontend
+// Server Frontend
 if (process.env.NODE_ENV === 'production') {
   // Set build folder as static
   app.use(express.static(path.join(__dirname, '../frontend/build')))
