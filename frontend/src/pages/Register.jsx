@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { register } from '../features/auth/authSlice'
+import { register } from '../features/auth/authSlice' //register is an action
 import Spinner from '../components/Spinner'
+//useSelector allows us to select properties and their value from the store
+//useDispatch allows to dispatch actions to the store that update state
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -14,15 +16,16 @@ function Register() {
     password2: '',
   })
 
-  const { name, email, password, password2 } = formData
+  const { name, email, password, password2 } = formData //destructure
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { isLoading } = useSelector((state) => state.auth)
+  //user, isError, isSuccess, isLoading, message - from initial state in authSlice.js
+  const { isLoading } = useSelector((state) => state.auth) //our state is auth, tickets, notes
 
   const onChange = (e) => {
-    setFormData((prevState) => (
+    setFormData((prevState) => ( //take prevState as input, destructure from prevState, update name with e.target.value
       {...prevState,
       [e.target.name]: e.target.value,
     }))
@@ -31,14 +34,14 @@ function Register() {
   // NOTE: no need for useEffect here as we can catch the
   // AsyncThunkAction rejection in our onSubmit or redirect them on the
   // resolution
-  // Side effects shoulld go in event handlers where possible
+  // Side effects should go in event handlers where possible
   // source: - https://beta.reactjs.org/learn/keeping-components-pure#where-you-can-cause-side-effects
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault() // to prevent the default browser from submitting form to the server
 
-    if (password !== password2) {
-      toast.error('Passwords do not match')
+    if (password !== password2) { //added the required flag in form-group for password, and password2 so we do not have to check here
+      toast.error('Passwords do not match') //see notes on toast in app.js
     } else {
       const userData = {
         name,
@@ -46,7 +49,7 @@ function Register() {
         password,
       }
 
-      dispatch(register(userData))
+      dispatch(register(userData)) //register from authSlice.js
         .unwrap()
         .then((user) => {
           // NOTE: by unwrapping the AsyncThunkAction we can navigate the user after
@@ -73,8 +76,8 @@ function Register() {
       </section>
 
       <section className='form'>
-        <form onSubmit={onSubmit}>
-          <div className='form-group'>
+        <form onSubmit={onSubmit}> {/* see on submit function above*/}
+          <div className='form-group'> {/* form input for name*/}
             <input
               type='text'
               className='form-control'
@@ -86,7 +89,7 @@ function Register() {
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='form-group'> {/* form input for email*/}
             <input
               type='email'
               className='form-control'
@@ -98,7 +101,7 @@ function Register() {
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='form-group'> {/* form input for password */}
             <input
               type='password'
               className='form-control'
@@ -110,7 +113,7 @@ function Register() {
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='form-group'> {/* form input for confirming password*/}
             <input
               type='password'
               className='form-control'
@@ -122,7 +125,7 @@ function Register() {
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='form-group'> {/* form input for submit button*/}
             <button className='btn btn-block'>Submit</button>
           </div>
         </form>

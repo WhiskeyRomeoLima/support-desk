@@ -1,6 +1,6 @@
 import axios from 'axios'
-
 const API_URL = '/api/users/'
+//* authService.js is used to makes requests from the api initiated by authSlice.js  */
 
 // Register user
 const register = async (userData) => {

@@ -9,6 +9,11 @@ import Register from './pages/Register'
 import NewTicket from './pages/NewTicket'
 //import Tickets from './pages/Tickets'
 import Ticket from './pages/Ticket'
+/* notes on toast
+  Import ToastContainer and related CSS from react-Toastify
+  add <ToastContainer /> outside of the Router section so 
+  that we can add toast where ever we want
+*/
 
 function App() {
   return (

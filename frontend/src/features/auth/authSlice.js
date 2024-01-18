@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
+/* 
+A "slice" is a collection of Redux reducer logic and actions for a single feature in your app, 
+typically defined together in a single file. 
+The name comes from splitting up the root Redux state object into multiple "slices" of state.
+*/
+
 
 // Get user from localstorage
 const user = JSON.parse(localStorage.getItem('user'))
@@ -12,12 +18,29 @@ const initialState = {
   message: '',
 }
 
+/* 
+//* createAsyncThunk
+
+A function that accepts a Redux action type string and a callback function that 
+should return a promise. It generates promise lifecycle action types based on 
+the action type prefix that you pass in, and returns a thunk action creator that 
+will run the promise callback and dispatch the lifecycle actions based on the returned promise.
+
+This abstracts the standard recommended approach for handling async request lifecycles.
+
+It does not generate any reducer functions, since it does not know what data you're fetching, 
+how you want to track loading state, or how the data you return needs to be processed. 
+You should write your own reducer logic that handles these actions, with 
+whatever loading state and processing logic is appropriate for your own app.
+*/
+
 // Register new user
 export const register = createAsyncThunk(
-  'auth/register',
-  async (user, thunkAPI) => {
+  'auth/register', /* action type */
+  async (user, thunkAPI) => { /* callback function */
+  console.log(user)
     try {
-      return await authService.register(user)
+      return await authService.register(user) //thunk action creator
     } catch (error) {
       const message =
         (error.response &&

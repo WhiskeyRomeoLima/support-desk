@@ -7,7 +7,6 @@ const {
   deleteTicket,
   updateTicket,
 } = require('../controllers/ticketController')
-
 const { protect } = require('../middleware/authMiddleware')
 
 // Re-route into note router
