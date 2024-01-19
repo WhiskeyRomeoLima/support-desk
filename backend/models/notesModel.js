@@ -16,7 +16,7 @@ const noteSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add some text'],
     },
-    isStaff: {
+    isStaff: { //* for use if decide to implement staff adding notes
       type: Boolean,
       default: false,
     },

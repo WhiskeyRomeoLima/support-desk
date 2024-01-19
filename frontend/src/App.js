@@ -7,7 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import NewTicket from './pages/NewTicket'
-//import Tickets from './pages/Tickets'
+import Tickets from './pages/Tickets'
 import Ticket from './pages/Ticket'
 /* notes on toast
   Import ToastContainer and related CSS from react-Toastify
@@ -28,9 +28,9 @@ function App() {
             <Route path='/new-ticket' element={<PrivateRoute />}>
               <Route path='/new-ticket' element={<NewTicket />} />
             </Route>
-            {/* <Route path='/tickets' element={<PrivateRoute />}>
+            <Route path='/tickets' element={<PrivateRoute />}>
               <Route path='/tickets' element={<Tickets />} />
-            </Route> */}
+            </Route>
             <Route path='/ticket/:ticketId' element={<PrivateRoute />}>
               <Route path='/ticket/:ticketId' element={<Ticket />} />
             </Route>
